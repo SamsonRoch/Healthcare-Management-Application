@@ -1,6 +1,6 @@
-# Patient Management App - Backend Server
+# Healthcare Management App - Backend Server
 
-This is the backend server for the Patient Management App. It provides secure API endpoints for administrative operations like creating staff accounts without affecting the current authentication state in the Flutter app.
+This is the backend server for the Healthcare Management App. It provides secure API endpoints for administrative operations like creating staff accounts without affecting the current authentication state in the Flutter app.
 
 ## Features
 
