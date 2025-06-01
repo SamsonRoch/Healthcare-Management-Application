@@ -18,6 +18,7 @@ patient_management_app/
 │   │   ├── widgets/    # Reusable widgets
 │   │   └── theme/      # App theme
 │   └── main.dart       # Entry point
+├── server/             # NodeJs source code
 ├── test/               # Test files
 └── pubspec.yaml        # Dependencies
 ```
@@ -75,3 +76,4 @@ patient_management_app/
 - SQLite for local storage
 - Provider for state management
 - Get_it for dependency injection
+- Nodejs for server
