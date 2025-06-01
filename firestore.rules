@@ -1,0 +1,74 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper function to check user role
+    function isRole(role) {
+      return exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == role;
+    }
+
+    // Users collection
+    match /users/{userId} {
+      // Allow reading users based on role permissions
+      allow read: if request.auth != null && (
+        request.auth.uid == userId ||
+        isRole('admin') ||
+        isRole('doctor') ||
+        isRole('receptionist') ||
+        (resource.data.role == 'doctor')
+      );
+      allow write: if request.auth != null && (
+        request.auth.uid == userId ||
+        isRole('admin') ||
+        (isRole('doctor') && request.resource.data.role == 'patient')
+      ) && (
+        request.resource.data.role in ['admin', 'doctor', 'nurse', 'receptionist', 'patient']
+      );
+    }
+
+    // Appointments collection
+    match /appointments/{appointmentId} {
+      allow read: if request.auth != null && (
+        resource.data.patientId == request.auth.uid ||
+        isRole('admin') ||
+        isRole('doctor') ||
+        isRole('receptionist')
+      );
+      allow write: if request.auth != null && (
+        request.resource.data.patientId == request.auth.uid ||
+        isRole('admin') ||
+        isRole('receptionist') ||
+        isRole('doctor')
+      );
+    }
+
+    // Medical_records collection
+    match /medical_records/{recordId} {
+      allow read: if request.auth != null && (
+        resource.data.patientId == request.auth.uid ||
+        isRole('admin') ||
+        isRole('doctor')
+      );
+      allow write: if request.auth != null && (
+        isRole('admin') ||
+        isRole('doctor')
+      );
+    }
+
+    // Patients collection
+    match /patients/{patientId} {
+      allow read: if request.auth != null && (
+        patientId == request.auth.uid ||  // 👈 allow patient to read their own doc
+        isRole('admin') ||
+        isRole('doctor') ||
+        isRole('receptionist')
+      );
+      allow write: if request.auth != null && (
+        patientId == request.auth.uid ||
+        isRole('admin') ||
+        isRole('doctor') ||
+        isRole('receptionist')
+      );
+    }
+  }
+}

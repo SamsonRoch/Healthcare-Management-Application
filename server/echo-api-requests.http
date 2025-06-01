@@ -1,0 +1,85 @@
+# Echo API Requests for Patient Management App Server
+# This file contains HTTP requests that can be executed using the Echo API extension in VS Code
+
+### Health Check Endpoint
+GET http://localhost:3000/
+
+### Create Doctor Staff Member
+POST http://localhost:3000/api/create-staff
+Content-Type: application/json
+
+{
+  "email": "test.doctor@example.com",
+  "password": "password123",
+  "name": "Test Doctor",
+  "role": "doctor",
+  "phoneNumber": "555-123-4567",
+  "specialty": "General Practice",
+  "licenseNumber": "MD12345"
+}
+
+### Create Nurse Staff Member
+POST http://localhost:3000/api/create-staff
+Content-Type: application/json
+
+{
+  "email": "test.nurse@example.com",
+  "password": "password123",
+  "name": "Test Nurse",
+  "role": "nurse",
+  "phoneNumber": "555-987-6543"
+}
+
+### Create Receptionist Staff Member
+POST http://localhost:3000/api/create-staff
+Content-Type: application/json
+
+{
+  "email": "test.receptionist@example.com",
+  "password": "password123",
+  "name": "Test Receptionist",
+  "role": "receptionist",
+  "phoneNumber": "555-456-7890"
+}
+
+### Create Admin Staff Member
+POST http://localhost:3000/api/create-staff
+Content-Type: application/json
+
+{
+  "email": "test.admin@example.com",
+  "password": "password123",
+  "name": "Test Admin",
+  "role": "admin"
+}
+
+### Update Staff Status (Deactivate)
+//PATCH http://localhost:3000/api/staff/{{userId}}/status
+Content-Type: application/json
+
+{
+  "isActive": false
+}
+
+### Update Staff Status (Activate)
+//PATCH http://localhost:3000/api/staff/{{userId}}/status
+Content-Type: application/json
+
+{
+  "isActive": true
+}
+
+# Note: Replace {{userId}} with an actual user ID when testing
+
+### INSTRUCTIONS FOR USING ECHO API EXTENSION IN VS CODE:
+# 1. Install the "REST Client" extension in VS Code
+#    (Search for "humao.rest-client" in the Extensions marketplace)
+# 2. Make sure your server is running (node index.js)
+# 3. Click the "Send Request" link that appears above each request
+# 4. View the response in the split panel that opens
+#
+# TROUBLESHOOTING CONNECTION ISSUES:
+# - Ensure server is running on port 3000
+# - Check for any firewall or network restrictions
+# - Verify the Flutter app's ApiService is using the correct baseUrl
+# - For mobile testing, ensure proper network permissions are set in AndroidManifest.xml
