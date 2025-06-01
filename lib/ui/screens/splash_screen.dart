@@ -68,7 +68,7 @@ class _SplashScreenState extends State<SplashScreen> {
             const SizedBox(height: 20),
             // App name
             Text(
-              'Patient Management',
+              'Healthcare Management',
               style: Theme.of(context).textTheme.displayMedium?.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
