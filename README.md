@@ -1,8 +1,8 @@
-# Patient Management App
+# Healthcare Management App
 ## Project Structure
 
 ```
-patient_management_app/
+healthcare_management_app/
 ├── android/            # Android-specific files
 ├── ios/                # iOS-specific files
 ├── lib/                # Dart source code
