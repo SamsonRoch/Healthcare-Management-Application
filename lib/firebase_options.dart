@@ -53,7 +53,7 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAUcUVzViGZe_5PilLpo4Gaqzz7N9hhe88',
+    apiKey: 'put ur own api key',
     appId: '1:788329562591:android:2602111e3fa0d0964b846a',
     messagingSenderId: '788329562591',
     projectId: 'patient-management-app-41ff6',
